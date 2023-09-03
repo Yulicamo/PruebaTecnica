@@ -1,0 +1,52 @@
+group='co.com.choucair.proyectobase'
+version='1.0'
+description='Automatización Choucair Academy'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.maven.apache.org/maven2"
+    }
+}
+buildscript {
+    repositories {
+
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.89")
+    }
+}
+ext{
+    serenityVersion = '3.6.12'
+    serenityCucumberVersion = '3.6.12'
+}
+
+dependencies {
+    implementation 'com.dukescript.api:junit-browser-runner:1.0'
+    implementation 'au.com.dius:pact-jvm-provider-spring:4.0.10'
+    implementation 'au.com.dius:pact-jvm-provider-spring_2.12:3.6.15'
+    implementation 'au.com.dius:pact-jvm-provider-spring_2.11:3.5.24'
+    implementation 'au.com.dius:pact-jvm-provider-junit_2.12:3.6.15'
+    implementation 'au.com.dius:pact-jvm-provider-junit:4.0.10'
+    implementation 'au.com.dius:pact-jvm-provider-junit_2.11:3.5.24'
+    implementation 'au.com.dius:pact-jvm-provider-junit_2.10:2.4.20'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.5'
+    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+
+}
+gradle.startParameter.continueOnFailure = true
